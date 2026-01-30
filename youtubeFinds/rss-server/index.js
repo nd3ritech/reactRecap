@@ -80,12 +80,14 @@ app.get("/filtered", (req, res) => {
     }
   }
 
-  //pagination logic
-  const  pageNum = Number(page);  //converting page and limit to numbers
-  const pageSize = Number(limit); 
+  //cursor logic
+  if (cursor){
+    const cursorDate = new Date(cursor); //converting the cursor string to date object
+    filteredArticles = filteredArticles.filter(article => new Date(article.pubDate) < cursorDate); //filtering articles to only keep those with pubDate less than cursor date
+  }
 
-  const start = (pageNum - 1 ) * pageSize;  //calculating the start and end index for slicing the filtered articles array
-
+  //limit logic
+   const  page
   res.json(filteredArticles);        //sending the filtered articles as response
 })
 
