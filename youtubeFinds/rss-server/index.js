@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
 app.get("/filtered", (req, res) => {
   const {
     timeRange,
-    page = 1,
+    cursor,  //pagination cursor for next page 
     limit = 20  
 
   } = req.query;   
@@ -82,6 +82,9 @@ app.get("/filtered", (req, res) => {
 
   //pagination logic
   const  pageNum = Number(page);  //converting page and limit to numbers
+  const pageSize = Number(limit); 
+
+  const start = (pageNum - 1 ) * pageSize;  //calculating the start and end index for slicing the filtered articles array
 
   res.json(filteredArticles);        //sending the filtered articles as response
 })
