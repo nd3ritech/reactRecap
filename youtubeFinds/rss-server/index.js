@@ -87,8 +87,19 @@ app.get("/filtered", (req, res) => {
   }
 
   //limit logic
-   const  page
-  res.json(filteredArticles);        //sending the filtered articles as response
+   const pageSize = Number(limit);
+   const pageData = filteredArticles.slice(0, pageSize); //slicing the filtered articles to get only the number of articles as per the limit provided
+
+   const nextCursor = pageData.length > 0 ? pageData[pageData.length - 1].pubDate : null ;
+
+
+   
+  res.json({
+    limit : pageSize,
+    nextCursor,
+    hasMore : pageData.length === pageSize,
+    data : pageData
+  });      
 })
 
 app.listen(4000, async () => {
