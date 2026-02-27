@@ -19,7 +19,7 @@ export default function Investopedia({title, creator,link,pubDate, categories, g
   const date = new Date(pubDate).toLocaleDateString('en-US',formatted)
   return(
     <>
-    <a href={link} className='mb-9 text-sm hover:text-blue-400 text-gray-500'>
+    <a href={link} className='mb-9 text-sm hover:text-blue-600 text-gray-500'>
       
       <div className='p-6  max-w-sm border  mb-1   rounded-lg shadow-lg bg-black/80 border-gray-700  backdrop-blur-lg hover:scale-105 transition duration-300 ease-in-out ml-10'>
       <h1 className='mb-6 text-xl text-white italic text-center'>
